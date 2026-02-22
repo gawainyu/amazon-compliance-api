@@ -26,4 +26,122 @@
         #docModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; }
         .modal-content { background: #1a1a1a; padding: 30px; border: 1px solid #333; width: 90%; max-width: 600px; position: relative; text-align: left; }
         .close-btn { position: absolute; top: 10px; right: 20px; color: #666; cursor: pointer; font-size: 1.5rem; }
-        pre { background: #000; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 0.85rem; border: 1
+        pre { background: #000; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 0.85rem; border: 1px solid #222; }
+        .json-key { color: #ff79c6; }
+        .json-str { color: #50fa7b; }
+
+        .contact-box { margin-top: 40px; padding: 25px; background: #080808; border: 1px solid #222; }
+        .email-display { color: #fff; font-size: 1.1rem; text-decoration: none; border-bottom: 1px solid #00ff00; padding-bottom: 2px; }
+        .status { font-size: 0.7rem; color: #444; margin-top: 40px; text-transform: uppercase; }
+        .status-dot { height: 6px; width: 6px; background-color: #00ff00; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 8px #00ff00; }
+
+        /* --- 方案 A: 实时日志样式 --- */
+        .live-log {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #00ff00;
+            padding: 15px;
+            font-size: 0.7rem;
+            color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            z-index: 1000;
+            pointer-events: none;
+            text-align: left;
+        }
+        .log-header { border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 10px; font-weight: bold; letter-spacing: 1px; display: flex; justify-content: space-between; }
+        .log-item { margin-bottom: 5px; opacity: 0; animation: logFadeIn 0.4s forwards; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @keyframes logFadeIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Compliance API</h1>
+        <p class="tagline">// Intelligent Listing Guard</p>
+        
+        <ul class="features">
+            <li><strong>Automated IP Scan:</strong> 100k+ brand database.</li>
+            <li><strong>Cross-Border Logic:</strong> US/UK/EU/JP Support.</li>
+            <li><strong>High-Throughput:</strong> 99.99% Enterprise Uptime.</li>
+        </ul>
+
+        <div class="btn-group">
+            <a href="https://checkout.stripe.com/c/pay/cs_test_a1qMQRmBlPKHEwS09fSWH9hWRxtJoNHUNPuK0PnaM9AH9J7gh0GbydA07W#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0UTZfTkpHYjAxQ0M1NnRIU0dAaFdPPWRoV0ZTdXdxc0B0S3FIcUJgMkhUQGpwd0lIVX1zRkN8dkAxfX1PMkFwdVNNM0ZNY1FMZGt9PUtccXBcYWxCckF2NTV3dzZtdGZvXScpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" target="_blank" class="btn btn-pay">Subscribe Pro - $99.99/mo</a>
+            <button class="btn btn-doc" onclick="openDoc()">View Documentation</button>
+        </div>
+
+        <div class="contact-box">
+            <a href="mailto:1207141527@qq.com?subject=API Inquiry" class="email-display">support@compliance-api.services</a>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span> API Server: <strong>Operational</strong>
+        </div>
+    </div>
+
+    <div class="live-log">
+        <div class="log-header">
+            <span>LIVE_AUDIT_STREAM</span>
+            <span style="color: #444;">V1.0.4</span>
+        </div>
+        <div id="log-content"></div>
+    </div>
+
+    <div id="docModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDoc()">&times;</span>
+            <h3 style="color:#00ff00; margin-top:0;">POST /v1/audit/listing</h3>
+            <p style="font-size:0.8rem; color:#888;">Example Request Body:</p>
+            <pre>
+{
+  <span class="json-key">"api_key"</span>: <span class="json-str">"amz_live_8888..."</span>,
+  <span class="json-key">"asin"</span>: <span class="json-str">"B07XJ8C..."</span>,
+  <span class="json-key">"market"</span>: <span class="json-str">"US"</span>
+}
+            </pre>
+            <button class="btn btn-pay" style="width:100%" onclick="window.open('https://checkout.stripe.com/c/pay/cs_test_a1qMQRmBlPKHEwS09fSWH9hWRxtJoNHUNPuK0PnaM9AH9J7gh0GbydA07W#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0UTZfTkpHYjAxQ0M1NnRIU0dAaFdPPWRoV0ZTdXdxc0B0S3FIcUJgMkhUQGpwd0lIVX1zRkN8dkAxfX1PMkFwdVNNM0ZNY1FMZGt9PUtccXBcYWxCckF2NTV3dzZtdGZvXScpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl')">Get API Key Now</button>
+        </div>
+    </div>
+
+    <script>
+        function openDoc() { document.getElementById('docModal').style.display = 'flex'; }
+        function closeDoc() { document.getElementById('docModal').style.display = 'none'; }
+        
+        window.onclick = function(event) {
+            let modal = document.getElementById('docModal');
+            if (event.target == modal) { closeDoc(); }
+        }
+
+        // --- 实时日志逻辑 ---
+        const asins = ['B07XJ8C', 'B08NF2C', 'B09HG8S', 'B0CL78X', 'B07VGRM', 'B0912X8', 'B08WJR1', 'B07P7V2'];
+        const markets = ['US', 'UK', 'DE', 'JP', 'CA'];
+        const logContent = document.getElementById('log-content');
+
+        function addLog() {
+            const asin = asins[Math.floor(Math.random() * asins.length)];
+            const market = markets[Math.floor(Math.random() * markets.length)];
+            const isSafe = Math.random() > 0.15;
+            const status = isSafe ? 'PASSED' : 'FLAGGED';
+            const color = isSafe ? '#00ff00' : '#ff4444';
+            
+            const timestamp = new Date().toLocaleTimeString('en-GB', { hour12: false });
+            const entry = document.createElement('div');
+            entry.className = 'log-item';
+            entry.innerHTML = `<span style="color:#444">[${timestamp}]</span> ${market}:${asin} > <span style="color:${color}">${status}</span>`;
+            
+            logContent.prepend(entry);
+            if (logContent.children.length > 10) {
+                logContent.removeChild(logContent.lastChild);
+            }
+        }
+        
+        // 随机间隔 1.5s - 4s 产生一条
+        (function loop() {
+            addLog();
+            setTimeout(loop, Math.random() * 2500 + 1500);
+        })();
+    </script>
+</body>
+</html>
